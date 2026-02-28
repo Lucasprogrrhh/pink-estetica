@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pink Estetica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div id="app">
+
+        <!-- LOGIN SCREEN -->
+        <div id="screen-login" class="screen active">
+            <div class="login-bg">
+                <div class="overlay"></div>
+                <div class="login-content">
+                    <div class="logo">
+                        <div class="logo-icon">P</div>
+                        <h1>Pink Estetica</h1>
+                    </div>
+
+                    <div class="auth-form">
+                        <h2>Autorización</h2>
+                        <div class="input-group">
+                            <input type="text" class="input-field" placeholder="Nombre de usuario" value="Maria Perez">
+                        </div>
+                        <div class="input-group">
+                            <input type="password" class="input-field" placeholder="Contraseña" value="password123">
+                        </div>
+                        <div class="forgot-pwd">
+                            <a href="#" onclick="app.navigate('forgot-pwd')">¿Olvidó su contraseña?</a>
+                        </div>
+
+                        <button class="btn-primary" onclick="app.navigate('home')">Iniciar Sesión</button>
+
+                        <div class="signup-link">
+                            ¿No tiene una cuenta? <a href="#" onclick="app.navigate('signup')">Crear una cuenta.</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SIGN UP SCREEN -->
+        <div id="screen-signup" class="screen">
+            <div class="header">
+                <button class="back-btn" onclick="app.navigate('login')"><i class="fa-solid fa-arrow-left"></i></button>
+                <h2>Crear Cuenta</h2>
+                <button class="back-btn" style="visibility:hidden"><i class="fa-solid fa-ellipsis"></i></button>
+            </div>
+
+            <div class="content-body padding-20">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <div class="logo-icon" style="margin: 0 auto 10px;">p</div>
+                    <h3 style="font-size: 20px; color: var(--text-dark);">Bienvenida a Pink</h3>
+                    <p style="color: var(--text-light); font-size: 14px;">Ingresa tus datos para registrarte.</p>
+                </div>
+
+                <div class="user-details-form"
+                    style="background: white; padding: 20px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 25px;">
+                    <div class="input-group" style="margin-bottom: 15px;">
+                        <input type="text" class="input-field" placeholder="Nombre completo"
+                            style="padding: 12px; background: #f9f9f9;">
+                    </div>
+                    <div class="input-group" style="margin-bottom: 15px;">
+                        <input type="email" class="input-field" placeholder="Correo electrónico"
+                            style="padding: 12px; background: #f9f9f9;">
+                    </div>
+                    <div class="input-group" style="margin-bottom: 15px;">
+                        <input type="tel" class="input-field" placeholder="Teléfono"
+                            style="padding: 12px; background: #f9f9f9;">
+                    </div>
+                    <div class="input-group" style="margin-bottom: 15px;">
+                        <input type="password" class="input-field" placeholder="Contraseña"
+                            style="padding: 12px; background: #f9f9f9;">
+                    </div>
+                    <button class="btn-primary" style="padding: 12px; font-size: 14px; margin-top: 10px; width: 100%;"
+                        onclick="app.navigate('home')">Registrarse</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- FORGOT PASSWORD SCREEN -->
+        <div id="screen-forgot-pwd" class="screen">
+            <div class="header">
+                <button class="back-btn" onclick="app.navigate('login')"><i class="fa-solid fa-arrow-left"></i></button>
+                <h2>Recuperar Clave</h2>
+                <button class="back-btn" style="visibility:hidden"><i class="fa-solid fa-ellipsis"></i></button>
+            </div>
+
+            <div class="content-body padding-20">
+                <div style="text-align: center; margin-top: 30px; margin-bottom: 20px;">
+                    <div
+                        style="width: 80px; height: 80px; background: var(--pale-pink); color: var(--primary-pink); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; margin: 0 auto 20px;">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <p style="color: var(--text-light); font-size: 14px; padding: 0 20px;">Ingresa el correo electrónico
+                        asociado a tu cuenta y te enviaremos un enlace para restablecer tu contraseña.</p>
+                </div>
+
+                <div class="user-details-form"
+                    style="background: white; padding: 20px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 25px;">
+                    <div class="input-group" style="margin-bottom: 15px;">
+                        <input type="email" class="input-field" placeholder="Correo electrónico"
+                            style="padding: 12px; background: #f9f9f9;">
+                    </div>
+                    <button class="btn-primary" style="padding: 12px; font-size: 14px; margin-top: 10px; width: 100%;"
+                        onclick="alert('Enlace de recuperación enviado a tu correo.'); app.navigate('login');">Enviar
+                        Enlace</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- HOME SCREEN -->
+        <div id="screen-home" class="screen">
+            <div class="header-pink">
+                <div class="user-greeting">
+                    <div class="avatar">
+                        <img src="https://ui-avatars.com/api/?name=Maria+Perez&background=fff&color=FF1493" alt="User">
+                    </div>
+                    <div class="greeting-text">
+                        <p>¡Hola, Maria!</p>
+                        <h2>Bienvenida a Pink Estetica</h2>
+                    </div>
+                    <div class="cart-icon cursor-pointer" onclick="app.navigate('notifications')"
+                        style="position: relative;">
+                        <span
+                            style="position: absolute; top: 10px; right: 10px; width: 8px; height: 8px; background: #25D366; border-radius: 50%;"></span>
+                        <i class="fa-solid fa-bell"></i>
+                    </div>
+                </div>
+                <div class="search-bar mt-20">
+                    <i class="fa-solid fa-search"></i>
+                    <input type="text" placeholder="Buscar servicios..." oninput="app.handleSearch(this.value)">
+                </div>
+            </div>
+
+            <div class="content-body padding-20 has-bottom-nav">
+                <div class="section-header">
+                    <h3>Servicios Principales</h3>
+                    <a href="#" onclick="app.navigate('services')" class="see-all">Ver todos</a>
+                </div>
+
+                <div class="services-row">
+                    <div class="service-card cursor-pointer" onclick="app.selectService('uñas')">
+                        <div class="service-img"
+                            style="background-image: url('https://images.unsplash.com/photo-1522337660859-02fbefca4702')">
+                            <div class="service-name-overlay">Uñas</div>
+                        </div>
+                    </div>
+                    <div class="service-card cursor-pointer" onclick="app.selectService('lifting')">
+                        <div class="service-img"
+                            style="background-image: url('https://images.unsplash.com/photo-1515377905703-c4788e51af15')">
+                            <div class="service-name-overlay">Lifting</div>
+                        </div>
+                    </div>
+                    <div class="service-card cursor-pointer" onclick="app.selectService('depilacion')">
+                        <div class="service-img"
+                            style="background-image: url('https://images.unsplash.com/photo-1560750588-73207b1ef5b8')">
+                            <div class="service-name-overlay">Depilación</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-header mt-20">
+                    <h3>Nuestra Profesional</h3>
+                </div>
+
+                <div class="specialist-card cursor-pointer" onclick="app.navigate('professional')"
+                    style="transition: transform 0.2s;">
+                    <div class="specialist-info">
+                        <img src="https://ui-avatars.com/api/?name=Milagros&background=FF1493&color=fff" alt="Milagros"
+                            class="specialist-avatar">
+                        <div>
+                            <h4>Milagros</h4>
+                            <p>Especialista en Belleza Integral</p>
+                            <div class="rating">
+                                <i class="fa-solid fa-star text-pink"></i>
+                                <i class="fa-solid fa-star text-pink"></i>
+                                <i class="fa-solid fa-star text-pink"></i>
+                                <i class="fa-solid fa-star text-pink"></i>
+                                <i class="fa-solid fa-star text-pink"></i>
+                                <span>5.0 (124 reseñas)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="specialist-bio mt-10">La única y exclusiva profesional de Pink Estetica, dedicada a
+                        resaltar tu belleza natural con los mejores tratamientos.</p>
+                    <div
+                        style="margin-top: 10px; font-size: 12px; color: var(--primary-pink); font-weight: 500; text-align: right;">
+                        Ver perfil y reseñas <i class="fa-solid fa-arrow-right ml-5"></i>
+                    </div>
+                </div>
+
+                <div class="promo-banner mt-20">
+                    <div class="promo-content">
+                        <h3>15% OFF</h3>
+                        <p>En tu primera sesión de Depilación Definitiva</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Nav -->
+            <div class="bottom-nav">
+                <a href="#" onclick="app.navigate('profile')" class="nav-item active">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Perfil</span>
+                </a>
+                <a href="#" onclick="app.navigate('services')" class="nav-item">
+                    <i class="fa-solid fa-spa"></i>
+                    <span>Servicios</span>
+                </a>
+                <a href="#" onclick="app.navigate('rewards')" class="nav-item">
+                    <i class="fa-solid fa-gift"></i>
+                    <span>Premios</span>
+                </a>
+                <a href="#" onclick="app.navigate('turnos')" class="nav-item">
+                    <i class="fa-regular fa-calendar-check"></i>
+                    <span>Turnos</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- SERVICES SCREEN -->
+        <div id="screen-services" class="screen">
+            <div class="header">
+                <button class="back-btn" onclick="app.navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+                <h2>Elegir Servicio</h2>
+                <button class="back-btn"><i class="fa-solid fa-ellipsis"></i></button>
+            </div>
+
+            <div class="content-body padding-20">
+                <div class="services-grid">
+
+                    <div class="service-box" onclick="app.selectService('uñas')">
+                        <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702" alt="Uñas">
+                        <div class="overlay-text">Uñas</div>
+                    </div>
+
+                    <div class="service-box" onclick="app.selectService('pies')">
+                        <img src="pedicura.png" alt="Pies">
+                        <div class="overlay-text">Pies (Pedicuria)</div>
+                    </div>
+
+                    <div class="service-box" onclick="app.selectService('lifting')">
+                        <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15" alt="Lifting">
+                        <div class="overlay-text">Lifting de Pestañas</div>
+                    </div>
+
+                    <div class="service-box" onclick="app.selectService('depilacion')">
+                        <img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8" alt="Depilación">
+                        <div class="overlay-text">Depilación Definitiva</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- BOOKING SUMMARY / CALENDAR SCREEN -->
+        <div id="screen-booking" class="screen">
+            <div class="header">
+                <button class="back-btn" onclick="app.navigate('services')"><i
+                        class="fa-solid fa-arrow-left"></i></button>
+                <h2>Fecha y Hora</h2>
+                <button class="back-btn"><i class="fa-solid fa-ellipsis"></i></button>
+            </div>
+
+            <div class="content-body padding-20">
+                <div class="month-selector">
+                    <i class="fa-solid fa-chevron-left" onclick="app.changeMonth(-1)"></i>
+                    <h3 id="current-month">Mes, Año</h3>
+                    <i class="fa-solid fa-chevron-right" onclick="app.changeMonth(1)"></i>
+                </div>
+
+                <div class="calendar-days" id="calendar-days">
+                    <!-- Days will be generated by JS -->
+                </div>
+
+                <div class="section-header mt-30">
+                    <h3>Horarios Disponibles</h3>
+                </div>
+
+                <div class="time-slots" id="time-slots">
+                    <!-- Time slots will be generated by JS based on selection -->
+                </div>
+
+                <div class="section-header mt-30">
+                    <h3>Tus Datos</h3>
+                </div>
+
+                <div class="user-details-form">
+                    <div class="input-group">
+                        <input type="text" id="client-name" class="input-field" placeholder="Tu Nombre">
+                    </div>
+                    <div class="input-group">
+                        <input type="email" id="client-email" class="input-field" placeholder="Tu Correo Electrónico">
+                    </div>
+                </div>
+
+                <div class="section-header mt-20">
+                    <h3>Servicio Seleccionado</h3>
+                </div>
+
+                <div class="selected-service-card">
+                    <div class="service-preview">
+                        <img id="selected-service-img"
+                            src="https://images.unsplash.com/photo-1522337660859-02fbefca4702" alt="Service">
+                        <div>
+                            <h4 id="selected-service-name">Uñas (Manicura)</h4>
+                            <p>Profesional: Milagros</p>
+                        </div>
+                    </div>
+                    <div class="service-price">$15.000 ARS</div>
+                </div>
+
+                <div class="mt-40 mb-20">
+                    <button class="btn-primary" onclick="app.confirmBooking()">Confirmar Turno</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TURNOS SCREEN -->
+        <div id="screen-turnos" class="screen">
+            <div class="header">
+                <button class="back-btn" onclick="app.navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+                <h2>Mis Turnos</h2>
+                <button class="back-btn" style="visibility:hidden"><i class="fa-solid fa-ellipsis"></i></button>
+            </div>
+
+            <div class="content-body padding-20" id="appointments-container">
+                <!-- Appointments will be rendered here -->
+            </div>
+        </div>
+
+        <!-- NOTIFICATIONS SCREEN -->
+        <div id="screen-notifications" class="screen">
+            <div class="header">
+                <button class="back-btn" onclick="app.navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+                <h2>Novedades</h2>
+                <button class="back-btn" style="visibility:hidden"><i class="fa-solid fa-ellipsis"></i></button>
+            </div>
+
+            <div class="content-body padding-20" id="notifications-container">
+                <!-- Notifications will be rendered here -->
+            </div>
+        </div>
+
+        <!-- REWARDS SCREEN -->
+        <div id="screen-rewards" class="screen">
+            <div class="header">
+                <button class="back-btn" onclick="app.navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+                <h2 style="font-family: serif; color: var(--primary-pink);">Beauty Rewards</h2>
+                <button class="back-btn" style="visibility:hidden"><i class="fa-solid fa-ellipsis"></i></button>
+            </div>
+
+            <div class="content-body padding-20" id="rewards-container">
+                <!-- Rewards will be rendered here -->
+            </div>
+        </div>
+
+        <!-- PROFILE SCREEN -->
+        <div id="screen-profile" class="screen">
+            <div class="header">
+                <button class="back-btn" onclick="app.navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+                <h2>Mi Perfil</h2>
+                <button class="back-btn" style="visibility:hidden"><i class="fa-solid fa-ellipsis"></i></button>
+            </div>
+
+            <div class="content-body padding-20">
+                <div style="text-align: center; margin-bottom: 30px; position: relative;">
+                    <img src="https://ui-avatars.com/api/?name=Maria+Perez&background=fff&color=FF1493"
+                        style="width: 100px; height: 100px; border-radius: 50%; border: 4px solid var(--pale-pink); box-shadow: var(--shadow-soft);"
+                        alt="User">
+                    <div
+                        style="position: absolute; bottom: 0; left: 50%; transform: translateX(25px); background: var(--primary-pink); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 2px solid white;">
+                        <i class="fa-solid fa-camera" style="font-size: 14px;"></i>
+                    </div>
+                </div>
+
+                <div class="section-header">
+                    <h3>Datos Personales</h3>
+                </div>
+
+                <div class="user-details-form"
+                    style="background: white; padding: 20px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 25px;">
+                    <div class="input-group" style="margin-bottom: 15px;">
+                        <label
+                            style="font-size: 12px; color: var(--text-light); margin-bottom: 5px; display: block;">Nombre
+                            Completo</label>
+                        <input type="text" class="input-field" value="Maria Perez"
+                            style="padding: 12px; background: #f9f9f9;">
+                    </div>
+                    <div class="input-group" style="margin-bottom: 15px;">
+                        <label
+                            style="font-size: 12px; color: var(--text-light); margin-bottom: 5px; display: block;">Correo
+                            Electrónico</label>
+                        <input type="email" class="input-field" value="maria.perez@email.com"
+                            style="padding: 12px; background: #f9f9f9;">
+                    </div>
+                    <div class="input-group" style="margin-bottom: 15px;">
+                        <label
+                            style="font-size: 12px; color: var(--text-light); margin-bottom: 5px; display: block;">Teléfono</label>
+                        <input type="tel" class="input-field" value="+54 9 11 1234-5678"
+                            style="padding: 12px; background: #f9f9f9;">
+                    </div>
+                    <button class="btn-primary" style="padding: 12px; font-size: 14px; margin-top: 10px;"
+                        onclick="alert('Datos actualizados correctamente')">Guardar Cambios</button>
+                </div>
+
+                <div class="section-header">
+                    <h3>Seguridad</h3>
+                </div>
+
+                <div class="user-details-form"
+                    style="background: white; padding: 20px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 25px;">
+                    <div class="input-group" style="margin-bottom: 15px;">
+                        <label
+                            style="font-size: 12px; color: var(--text-light); margin-bottom: 5px; display: block;">Contraseña
+                            Actual</label>
+                        <input type="password" class="input-field" placeholder="********"
+                            style="padding: 12px; background: #f9f9f9;">
+                    </div>
+                    <div class="input-group" style="margin-bottom: 15px;">
+                        <label
+                            style="font-size: 12px; color: var(--text-light); margin-bottom: 5px; display: block;">Nueva
+                            Contraseña</label>
+                        <input type="password" class="input-field" placeholder="Ingresa nueva contraseña"
+                            style="padding: 12px; background: #f9f9f9;">
+                    </div>
+                    <button class="btn-outline" style="padding: 12px; font-size: 14px; margin-top: 10px;"
+                        onclick="alert('Contraseña modificada con éxito')">Modificar Clave</button>
+                </div>
+
+                <div style="text-align: center; margin-top: 40px; margin-bottom: 20px;">
+                    <a href="#" onclick="app.navigate('login')"
+                        style="color: #ff4757; text-decoration: none; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesión
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROFESSIONAL PROFILE SCREEN -->
+        <div id="screen-professional" class="screen">
+            <div class="header">
+                <button class="back-btn" onclick="app.navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+                <h2>Perfil Profesional</h2>
+                <button class="back-btn"><i class="fa-solid fa-share-nodes"></i></button>
+            </div>
+
+            <div class="content-body padding-20">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <img src="https://ui-avatars.com/api/?name=Milagros&background=FF1493&color=fff"
+                        style="width: 100px; height: 100px; border-radius: 24px; box-shadow: var(--shadow-soft); margin-bottom: 15px;"
+                        alt="Milagros">
+                    <h3 style="font-size: 22px;">Milagros</h3>
+                    <p style="color: var(--primary-pink); font-weight: 500;">Especialista en Belleza Integral</p>
+
+                    <div
+                        style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 15px;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 24px; font-weight: 700;">4.9</div>
+                            <div style="color: #FFD700; font-size: 12px;">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star-half-stroke"></i>
+                            </div>
+                        </div>
+                        <div style="width: 1px; height: 30px; background: #e0e0e0;"></div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 20px; font-weight: 700;">327</div>
+                            <div style="font-size: 12px; color: var(--text-light);">Reseñas Verificadas</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-primary mb-20" onclick="app.navigate('review-form')"
+                    style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+                    <i class="fa-solid fa-pen-nib"></i> Dejar mi reseña (+10 pts)
+                </button>
+
+                <div class="section-header">
+                    <h3>Experiencias Reales</h3>
+                </div>
+
+                <!-- Filters -->
+                <div
+                    style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 15px; scrollbar-width: none;">
+                    <div
+                        style="padding: 6px 15px; background: var(--primary-pink); color: white; border-radius: 20px; font-size: 12px; white-space: nowrap; font-weight: 500;">
+                        Todos</div>
+                    <div
+                        style="padding: 6px 15px; background: white; border: 1px solid #e0e0e0; border-radius: 20px; font-size: 12px; white-space: nowrap;">
+                        Lifting de pestañas</div>
+                    <div
+                        style="padding: 6px 15px; background: white; border: 1px solid #e0e0e0; border-radius: 20px; font-size: 12px; white-space: nowrap;">
+                        Uñas</div>
+                    <div
+                        style="padding: 6px 15px; background: white; border: 1px solid #e0e0e0; border-radius: 20px; font-size: 12px; white-space: nowrap;">
+                        Limpieza facial</div>
+                </div>
+
+                <!-- Reviews -->
+                <div
+                    style="background: white; border-radius: 16px; padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 15px; border: 1px solid #f0f0f0;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <img src="https://ui-avatars.com/api/?name=Sofia+M&background=f0f0f0&color=333"
+                                style="width: 36px; height: 36px; border-radius: 50%;">
+                            <div>
+                                <h4 style="font-size: 13px; margin: 0;">Sofia M. <i
+                                        class="fa-solid fa-circle-check text-pink" style="font-size: 10px;"></i></h4>
+                                <span style="font-size: 10px; color: var(--text-light);">Hace 2 días • Lifting de
+                                    Pestañas</span>
+                            </div>
+                        </div>
+                        <div style="color: #FFD700; font-size: 10px;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <h5 style="font-size: 14px; margin-bottom: 5px;">¡Ojos increíbles! 😍</h5>
+                    <p style="font-size: 13px; color: var(--text-dark); margin-bottom: 10px; line-height: 1.4;">Milagros
+                        es una genia. Mis pestañas quedaron súper naturales pero con un volumen hermoso. La atención y
+                        la delicadeza son un 10.</p>
+                    <div style="display: flex; gap: 10px; position: relative;">
+                        <!-- Before & After style -->
+                        <div
+                            style="position: relative; width: 120px; height: 120px; border-radius: 12px; overflow: hidden;">
+                            <img src="https://images.unsplash.com/photo-1512496015851-a9089ab24e2c"
+                                style="width: 100%; height: 100%; object-fit: cover;">
+                            <div
+                                style="position: absolute; bottom: 5px; right: 5px; background: rgba(0,0,0,0.6); color: white; padding: 2px 6px; border-radius: 4px; font-size: 9px; backdrop-filter: blur(2px);">
+                                Después</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- LEAVE REVIEW SCREEN -->
+        <div id="screen-review-form" class="screen">
+            <div class="header">
+                <button class="back-btn" onclick="app.navigate('professional')"><i
+                        class="fa-solid fa-arrow-left"></i></button>
+                <h2>Dejar Reseña</h2>
+                <button class="back-btn" style="visibility:hidden"><i class="fa-solid fa-ellipsis"></i></button>
+            </div>
+
+            <div class="content-body padding-20">
+                <div class="promo-banner"
+                    style="background: linear-gradient(135deg, #FFB6C1, #FF69B4); padding: 15px; margin-bottom: 25px; border-radius: 12px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fa-solid fa-gift" style="font-size: 24px; color: white;"></i>
+                        <div>
+                            <h4 style="color: white; font-size: 14px; margin: 0;">¡Gana Puntos Beauty!</h4>
+                            <p style="color: rgba(255,255,255,0.9); font-size: 11px; margin: 0;">+10 pts por tu opinión,
+                                +20 pts si subes foto.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    style="background: white; padding: 20px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 25px; border: 1px solid #f0f0f0;">
+
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <h4 style="font-size: 14px; margin-bottom: 10px;">¿Qué tal fue tu experiencia?</h4>
+                        <div id="star-rating"
+                            style="display: flex; justify-content: center; gap: 10px; font-size: 28px; color: #e0e0e0; cursor: pointer;">
+                            <i class="fa-solid fa-star" data-val="1" onclick="app.setRating(1)"></i>
+                            <i class="fa-solid fa-star" data-val="2" onclick="app.setRating(2)"></i>
+                            <i class="fa-solid fa-star" data-val="3" onclick="app.setRating(3)"></i>
+                            <i class="fa-solid fa-star" data-val="4" onclick="app.setRating(4)"></i>
+                            <i class="fa-solid fa-star" data-val="5" onclick="app.setRating(5)"></i>
+                        </div>
+                    </div>
+
+                    <div class="input-group" style="margin-bottom: 15px;">
+                        <label
+                            style="font-size: 12px; color: var(--text-light); margin-bottom: 5px; display: block;">Título
+                            de tu experiencia</label>
+                        <input type="text" id="review-title" class="input-field"
+                            placeholder="Ej: Me encantó el resultado" style="padding: 12px; background: #f9f9f9;">
+                    </div>
+
+                    <div class="input-group" style="margin-bottom: 15px;">
+                        <label
+                            style="font-size: 12px; color: var(--text-light); margin-bottom: 5px; display: block;">Cuéntanos
+                            más</label>
+                        <textarea id="review-text" class="input-field"
+                            placeholder="¿Cómo te atendió Milagros? ¿Te gustó el resultado?" rows="4"
+                            style="padding: 12px; background: #f9f9f9; resize: none;"></textarea>
+                    </div>
+
+                    <div class="input-group" style="margin-bottom: 15px;">
+                        <label
+                            style="font-size: 12px; color: var(--text-light); margin-bottom: 5px; display: block;">Fotos
+                            post-servicio (¡Ganas más puntos!)</label>
+                        <label for="review-photo"
+                            style="display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px dashed var(--pale-pink); border-radius: 12px; padding: 20px; background: var(--faint-pink); cursor: pointer; color: var(--primary-pink); font-size: 14px; font-weight: 500;">
+                            <i class="fa-solid fa-camera mb-10" style="font-size: 24px;"></i>
+                            <span>Subir el Antes y Después</span>
+                            <span
+                                style="font-size: 10px; color: var(--text-light); margin-top: 5px; font-weight: normal;">(Máx.
+                                3 fotos)</span>
+                        </label>
+                        <input type="file" id="review-photo" accept="image/*" style="display: none;"
+                            onchange="app.handlePhotoUpload(this)">
+                        <div id="photo-preview" style="display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;">
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 20px;">
+                        <input type="checkbox" id="auth-publish" checked
+                            style="margin-top: 3px; accent-color: var(--primary-pink);">
+                        <label for="auth-publish" style="font-size: 11px; color: var(--text-light); line-height: 1.4;">
+                            Autorizo a Pink Estetica a utilizar mi reseña y fotos en sus redes sociales y material de
+                            marketing para inspirar a más clientas.
+                        </label>
+                    </div>
+
+                    <button class="btn-primary" onclick="app.submitReview()" style="width: 100%;">Publicar
+                        Experiencia</button>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- REVIEW SUCCESS OVERLAY -->
+        <div id="review-success-overlay" class="screen"
+            style="z-index: 1000; background: rgba(255,20,147,0.9); align-items: center; justify-content: center;">
+            <div
+                style="background: white; padding: 40px 20px; border-radius: 24px; text-align: center; width: 85%; box-shadow: 0 20px 40px rgba(0,0,0,0.2);">
+                <div
+                    style="width: 80px; height: 80px; background: linear-gradient(135deg, #FFB6C1, #FF69B4); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; margin: 0 auto 20px; box-shadow: 0 10px 20px rgba(255, 105, 180, 0.4);">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <h2 style="margin-bottom: 10px; color: var(--primary-pink);">¡Gracias, Hermosa!</h2>
+                <p style="margin-bottom: 20px; font-size: 14px; color: var(--text-light);">Tu reseña ayuda a que la
+                    comunidad crezca.</p>
+
+                <div style="background: var(--faint-pink); border-radius: 12px; padding: 15px; margin-bottom: 25px;">
+                    <h3 id="review-points-earned"
+                        style="color: var(--primary-pink); font-size: 24px; margin-bottom: 5px;">+30 pts</h3>
+                    <p style="font-size: 12px; color: var(--text-dark); margin: 0;">Acreditados en tu Beauty Rewards</p>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <p style="font-size: 12px; color: var(--text-light); margin-bottom: 10px;">Comparte tu look y
+                        etiquétanos</p>
+                    <div style="display:flex; flex-direction:column; gap:10px;">
+                        <button class="btn-primary"
+                            style="background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D); box-shadow:0 4px 15px rgba(225, 48, 108,0.3); font-size: 14px;"
+                            onclick="app.shareToInstagram()">
+                            <i class="fa-brands fa-instagram mr-10" style="font-size: 18px;"></i> Compartir en Instagram
+                        </button>
+                        <button class="btn-primary"
+                            style="background: #1877F2; box-shadow:0 4px 15px rgba(24, 119, 242,0.3); font-size: 14px;">
+                            <i class="fa-brands fa-facebook-f mr-10" style="font-size: 18px;"></i> Compartir en Facebook
+                        </button>
+                    </div>
+                </div>
+
+                <button class="back-btn" style="font-size: 14px; text-decoration: underline; color: var(--text-light);"
+                    onclick="app.closeReviewSuccess()">Volver a mi perfil</button>
+            </div>
+        </div>
+
+        <!-- SUCCESS OVERLAY (Booking) -->
+        <div id="success-overlay" class="screen"
+            style="z-index: 1000; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; backdrop-filter: blur(5px);">
+            <div style="background: white; padding: 40px 20px; border-radius: 20px; text-align: center; width: 85%;">
+                <div
+                    style="width: 80px; height: 80px; background: var(--pale-pink); color: var(--primary-pink); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 40px; margin: 0 auto 20px;">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h2 style="margin-bottom: 10px;">¡Turno Generado!</h2>
+                <p id="success-message" style="margin-bottom: 20px; font-size: 14px;">Tu turno está casi listo.</p>
+
+                <div style="display:flex; flex-direction:column; gap:10px; margin-bottom: 20px;">
+                    <button class="btn-primary" style="background:#25D366; box-shadow:0 4px 15px rgba(37,211,102,0.3);"
+                        onclick="app.sendWhatsApp()">
+                        <i class="fa-brands fa-whatsapp mr-10"></i> Notificar a Milagros
+                    </button>
+                    <button class="btn-outline" onclick="app.sendEmail()">
+                        <i class="fa-regular fa-envelope mr-10"></i> Enviarme un correo
+                    </button>
+                </div>
+
+                <button class="back-btn" style="font-size: 14px; text-decoration: underline;"
+                    onclick="app.closeSuccess()">Volver al Inicio</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
