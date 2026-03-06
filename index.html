@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#FF1493">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="logo.jpg">
     <title>Pink Estetica</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
@@ -21,23 +24,26 @@
                 <div class="overlay"></div>
                 <div class="login-content">
                     <div class="logo">
-                        <div class="logo-icon">P</div>
+                        <img src="logo.jpg" alt="Pink Estetica Logo"
+                            style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin: 0 auto 15px; display: block; box-shadow: 0 4px 15px rgba(255, 20, 147, 0.2);">
                         <h1>Pink Estetica</h1>
                     </div>
 
                     <div class="auth-form">
                         <h2>Autorización</h2>
                         <div class="input-group">
-                            <input type="text" class="input-field" placeholder="Nombre de usuario" value="Maria Perez">
+                            <input type="text" id="login-email" class="input-field" placeholder="Correo electrónico"
+                                value="">
                         </div>
                         <div class="input-group">
-                            <input type="password" class="input-field" placeholder="Contraseña" value="password123">
+                            <input type="password" id="login-password" class="input-field" placeholder="Contraseña"
+                                value="">
                         </div>
                         <div class="forgot-pwd">
                             <a href="#" onclick="app.navigate('forgot-pwd')">¿Olvidó su contraseña?</a>
                         </div>
 
-                        <button class="btn-primary" onclick="app.navigate('home')">Iniciar Sesión</button>
+                        <button class="btn-primary" onclick="app.loginUser()">Iniciar Sesión</button>
 
                         <div class="signup-link">
                             ¿No tiene una cuenta? <a href="#" onclick="app.navigate('signup')">Crear una cuenta.</a>
@@ -57,7 +63,8 @@
 
             <div class="content-body padding-20">
                 <div style="text-align: center; margin-bottom: 20px;">
-                    <div class="logo-icon" style="margin: 0 auto 10px;">p</div>
+                    <img src="logo.jpg" alt="Pink"
+                        style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover; margin: 0 auto 10px; display: block; box-shadow: 0 4px 15px rgba(255, 20, 147, 0.1);">
                     <h3 style="font-size: 20px; color: var(--text-dark);">Bienvenida a Pink</h3>
                     <p style="color: var(--text-light); font-size: 14px;">Ingresa tus datos para registrarte.</p>
                 </div>
@@ -65,23 +72,23 @@
                 <div class="user-details-form"
                     style="background: white; padding: 20px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 25px;">
                     <div class="input-group" style="margin-bottom: 15px;">
-                        <input type="text" class="input-field" placeholder="Nombre completo"
+                        <input type="text" id="signup-name" class="input-field" placeholder="Nombre completo"
                             style="padding: 12px; background: #f9f9f9;">
                     </div>
                     <div class="input-group" style="margin-bottom: 15px;">
-                        <input type="email" class="input-field" placeholder="Correo electrónico"
+                        <input type="email" id="signup-email" class="input-field" placeholder="Correo electrónico"
                             style="padding: 12px; background: #f9f9f9;">
                     </div>
                     <div class="input-group" style="margin-bottom: 15px;">
-                        <input type="tel" class="input-field" placeholder="Teléfono"
+                        <input type="tel" id="signup-phone" class="input-field" placeholder="Teléfono"
                             style="padding: 12px; background: #f9f9f9;">
                     </div>
                     <div class="input-group" style="margin-bottom: 15px;">
-                        <input type="password" class="input-field" placeholder="Contraseña"
+                        <input type="password" id="signup-password" class="input-field" placeholder="Contraseña"
                             style="padding: 12px; background: #f9f9f9;">
                     </div>
                     <button class="btn-primary" style="padding: 12px; font-size: 14px; margin-top: 10px; width: 100%;"
-                        onclick="app.navigate('home')">Registrarse</button>
+                        onclick="app.registerUser()">Registrarse</button>
                 </div>
             </div>
         </div>
@@ -122,10 +129,11 @@
             <div class="header-pink">
                 <div class="user-greeting">
                     <div class="avatar">
-                        <img src="https://ui-avatars.com/api/?name=Maria+Perez&background=fff&color=FF1493" alt="User">
+                        <img id="home-avatar"
+                            src="https://ui-avatars.com/api/?name=Maria+Perez&background=fff&color=FF1493" alt="User">
                     </div>
                     <div class="greeting-text">
-                        <p>¡Hola, Maria!</p>
+                        <p id="home-greeting">¡Hola, Maria!</p>
                         <h2>Bienvenida a Pink Estetica</h2>
                     </div>
                     <div class="cart-icon cursor-pointer" onclick="app.navigate('notifications')"
@@ -198,12 +206,6 @@
                     </div>
                 </div>
 
-                <div class="promo-banner mt-20">
-                    <div class="promo-content">
-                        <h3>15% OFF</h3>
-                        <p>En tu primera sesión de Depilación Definitiva</p>
-                    </div>
-                </div>
             </div>
 
             <!-- Bottom Nav -->
@@ -355,7 +357,7 @@
         <div id="screen-rewards" class="screen">
             <div class="header">
                 <button class="back-btn" onclick="app.navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
-                <h2 style="font-family: serif; color: var(--primary-pink);">Beauty Rewards</h2>
+                <h2>Beauty Rewards</h2>
                 <button class="back-btn" style="visibility:hidden"><i class="fa-solid fa-ellipsis"></i></button>
             </div>
 
@@ -374,13 +376,15 @@
 
             <div class="content-body padding-20">
                 <div style="text-align: center; margin-bottom: 30px; position: relative;">
-                    <img src="https://ui-avatars.com/api/?name=Maria+Perez&background=fff&color=FF1493"
-                        style="width: 100px; height: 100px; border-radius: 50%; border: 4px solid var(--pale-pink); box-shadow: var(--shadow-soft);"
+                    <img id="profile-img" src="https://ui-avatars.com/api/?name=Maria+Perez&background=fff&color=FF1493"
+                        style="width: 100px; height: 100px; border-radius: 50%; border: 4px solid var(--pale-pink); box-shadow: var(--shadow-soft); object-fit: cover;"
                         alt="User">
-                    <div
+                    <label for="profile-photo-upload"
                         style="position: absolute; bottom: 0; left: 50%; transform: translateX(25px); background: var(--primary-pink); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 2px solid white;">
                         <i class="fa-solid fa-camera" style="font-size: 14px;"></i>
-                    </div>
+                    </label>
+                    <input type="file" id="profile-photo-upload" accept="image/*" style="display: none;"
+                        onchange="app.handleProfilePhotoUpload(this)">
                 </div>
 
                 <div class="section-header">
@@ -393,24 +397,24 @@
                         <label
                             style="font-size: 12px; color: var(--text-light); margin-bottom: 5px; display: block;">Nombre
                             Completo</label>
-                        <input type="text" class="input-field" value="Maria Perez"
+                        <input type="text" id="profile-name" class="input-field" value=""
                             style="padding: 12px; background: #f9f9f9;">
                     </div>
                     <div class="input-group" style="margin-bottom: 15px;">
                         <label
                             style="font-size: 12px; color: var(--text-light); margin-bottom: 5px; display: block;">Correo
                             Electrónico</label>
-                        <input type="email" class="input-field" value="maria.perez@email.com"
-                            style="padding: 12px; background: #f9f9f9;">
+                        <input type="email" id="profile-email" class="input-field" value="" readonly
+                            style="padding: 12px; background: #e0e0e0; color: #666; cursor: not-allowed;">
                     </div>
                     <div class="input-group" style="margin-bottom: 15px;">
                         <label
                             style="font-size: 12px; color: var(--text-light); margin-bottom: 5px; display: block;">Teléfono</label>
-                        <input type="tel" class="input-field" value="+54 9 11 1234-5678"
+                        <input type="tel" id="profile-phone" class="input-field" value=""
                             style="padding: 12px; background: #f9f9f9;">
                     </div>
                     <button class="btn-primary" style="padding: 12px; font-size: 14px; margin-top: 10px;"
-                        onclick="alert('Datos actualizados correctamente')">Guardar Cambios</button>
+                        onclick="app.updateProfile()">Guardar Cambios</button>
                 </div>
 
                 <div class="section-header">
@@ -423,22 +427,22 @@
                         <label
                             style="font-size: 12px; color: var(--text-light); margin-bottom: 5px; display: block;">Contraseña
                             Actual</label>
-                        <input type="password" class="input-field" placeholder="********"
+                        <input type="password" id="current-password" class="input-field" placeholder="********"
                             style="padding: 12px; background: #f9f9f9;">
                     </div>
                     <div class="input-group" style="margin-bottom: 15px;">
                         <label
                             style="font-size: 12px; color: var(--text-light); margin-bottom: 5px; display: block;">Nueva
                             Contraseña</label>
-                        <input type="password" class="input-field" placeholder="Ingresa nueva contraseña"
-                            style="padding: 12px; background: #f9f9f9;">
+                        <input type="password" id="new-password" class="input-field"
+                            placeholder="Ingresa nueva contraseña" style="padding: 12px; background: #f9f9f9;">
                     </div>
                     <button class="btn-outline" style="padding: 12px; font-size: 14px; margin-top: 10px;"
-                        onclick="alert('Contraseña modificada con éxito')">Modificar Clave</button>
+                        onclick="app.changePassword()">Modificar Clave</button>
                 </div>
 
                 <div style="text-align: center; margin-top: 40px; margin-bottom: 20px;">
-                    <a href="#" onclick="app.navigate('login')"
+                    <a href="#" onclick="app.logout()"
                         style="color: #ff4757; text-decoration: none; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 10px;">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesión
                     </a>
@@ -465,16 +469,16 @@
                     <div
                         style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 15px;">
                         <div style="text-align: center;">
-                            <div style="font-size: 24px; font-weight: 700;">4.9</div>
+                            <div class="prof-score" style="font-size: 24px; font-weight: 700;">5.0</div>
                             <div style="color: #FFD700; font-size: 12px;">
                                 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
                                     class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                    class="fa-solid fa-star-half-stroke"></i>
+                                    class="fa-solid fa-star"></i>
                             </div>
                         </div>
                         <div style="width: 1px; height: 30px; background: #e0e0e0;"></div>
                         <div style="text-align: center;">
-                            <div style="font-size: 20px; font-weight: 700;">327</div>
+                            <div class="prof-review-count" style="font-size: 20px; font-weight: 700;">0</div>
                             <div style="font-size: 12px; color: var(--text-light);">Reseñas Verificadas</div>
                         </div>
                     </div>
@@ -492,55 +496,20 @@
                 <!-- Filters -->
                 <div
                     style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 15px; scrollbar-width: none;">
-                    <div
+                    <div class="filter-chip cursor-pointer" onclick="app.renderReviews('Todos')"
                         style="padding: 6px 15px; background: var(--primary-pink); color: white; border-radius: 20px; font-size: 12px; white-space: nowrap; font-weight: 500;">
                         Todos</div>
-                    <div
+                    <div class="filter-chip cursor-pointer" onclick="app.renderReviews('Lifting')"
                         style="padding: 6px 15px; background: white; border: 1px solid #e0e0e0; border-radius: 20px; font-size: 12px; white-space: nowrap;">
-                        Lifting de pestañas</div>
-                    <div
+                        Lifting</div>
+                    <div class="filter-chip cursor-pointer" onclick="app.renderReviews('Uñas')"
                         style="padding: 6px 15px; background: white; border: 1px solid #e0e0e0; border-radius: 20px; font-size: 12px; white-space: nowrap;">
                         Uñas</div>
-                    <div
-                        style="padding: 6px 15px; background: white; border: 1px solid #e0e0e0; border-radius: 20px; font-size: 12px; white-space: nowrap;">
-                        Limpieza facial</div>
                 </div>
 
-                <!-- Reviews -->
-                <div
-                    style="background: white; border-radius: 16px; padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 15px; border: 1px solid #f0f0f0;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                        <div style="display: flex; gap: 10px; align-items: center;">
-                            <img src="https://ui-avatars.com/api/?name=Sofia+M&background=f0f0f0&color=333"
-                                style="width: 36px; height: 36px; border-radius: 50%;">
-                            <div>
-                                <h4 style="font-size: 13px; margin: 0;">Sofia M. <i
-                                        class="fa-solid fa-circle-check text-pink" style="font-size: 10px;"></i></h4>
-                                <span style="font-size: 10px; color: var(--text-light);">Hace 2 días • Lifting de
-                                    Pestañas</span>
-                            </div>
-                        </div>
-                        <div style="color: #FFD700; font-size: 10px;">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                class="fa-solid fa-star"></i>
-                        </div>
-                    </div>
-                    <h5 style="font-size: 14px; margin-bottom: 5px;">¡Ojos increíbles! 😍</h5>
-                    <p style="font-size: 13px; color: var(--text-dark); margin-bottom: 10px; line-height: 1.4;">Milagros
-                        es una genia. Mis pestañas quedaron súper naturales pero con un volumen hermoso. La atención y
-                        la delicadeza son un 10.</p>
-                    <div style="display: flex; gap: 10px; position: relative;">
-                        <!-- Before & After style -->
-                        <div
-                            style="position: relative; width: 120px; height: 120px; border-radius: 12px; overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1512496015851-a9089ab24e2c"
-                                style="width: 100%; height: 100%; object-fit: cover;">
-                            <div
-                                style="position: absolute; bottom: 5px; right: 5px; background: rgba(0,0,0,0.6); color: white; padding: 2px 6px; border-radius: 4px; font-size: 9px; backdrop-filter: blur(2px);">
-                                Después</div>
-                        </div>
-                    </div>
+                <!-- Reviews Container -->
+                <div id="reviews-container">
+                    <!-- Dinámicamente insertado por JS -->
                 </div>
 
             </div>
@@ -700,9 +669,127 @@
             </div>
         </div>
 
+        <!-- ADMIN PANEL SCREEN -->
+        <div id="screen-admin" class="screen">
+            <div class="header-pink"
+                style="display: flex; justify-content: space-between; align-items: center; background: #333;">
+                <h1 style="font-size: 20px;"><i class="fa-solid fa-lock mr-10"></i>Panel Admin</h1>
+                <button onclick="app.logout()"
+                    style="background: none; border: none; color: white; cursor: pointer; font-size: 14px;">
+                    <i class="fa-solid fa-right-from-bracket mr-10"></i>Salir
+                </button>
+            </div>
+
+            <div class="main-content">
+                <div
+                    style="background: linear-gradient(135deg, #FFB6C1, #FF1493); border-radius: 16px; padding: 20px; color: white; margin-bottom: 25px;">
+                    <h2 style="font-size: 18px; margin-bottom: 5px;">Bienvenida, Milagros</h2>
+                    <p style="font-size: 13px; opacity: 0.9;">Resumen general de tu estética.</p>
+                </div>
+
+                <!-- Admin Tabs -->
+                <div style="display: flex; border-bottom: 2px solid #f0f0f0; margin-bottom: 20px;">
+                    <div id="admin-tab-turnos" onclick="app.switchAdminTab('turnos')"
+                        style="flex: 1; text-align: center; padding: 10px; font-weight: 600; cursor: pointer; color: var(--primary-pink); border-bottom: 2px solid var(--primary-pink); font-size: 13px;">
+                        Turnos</div>
+                    <div id="admin-tab-clientes" onclick="app.switchAdminTab('clientes')"
+                        style="flex: 1; text-align: center; padding: 10px; font-weight: 600; cursor: pointer; color: var(--text-light); border-bottom: 2px solid transparent; font-size: 13px;">
+                        Clientas</div>
+                    <div id="admin-tab-servicios" onclick="app.switchAdminTab('servicios')"
+                        style="flex: 1; text-align: center; padding: 10px; font-weight: 600; cursor: pointer; color: var(--text-light); border-bottom: 2px solid transparent; font-size: 13px;">
+                        Precios</div>
+                </div>
+
+                <!-- Admin Content Areas -->
+                <div id="admin-content-turnos">
+                    <!-- Configuración General -->
+                    <div
+                        style="background: white; border-radius: 12px; padding: 15px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); border-left: 4px solid var(--primary-pink);">
+                        <h4 style="font-size: 14px; margin: 0 0 10px 0; color: var(--text-dark);"><i
+                                class="fa-brands fa-whatsapp mr-10" style="color: #25D366;"></i>Número de Recepción
+                            (WhatsApp)</h4>
+                        <div style="display: flex; gap: 8px;">
+                            <input type="text" id="admin-whatsapp-input" placeholder="Ej: 5491131062000"
+                                style="padding: 10px; border: 1px solid #e0e0e0; border-radius: 8px; flex: 1; font-size: 13px; outline: none;">
+                            <button onclick="app.adminSaveWhatsApp()"
+                                style="background: var(--primary-pink); color: white; border: none; padding: 10px 15px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 13px;">Guardar</button>
+                        </div>
+                        <p style="font-size: 11px; color: var(--text-light); margin-top: 8px;">Este es el número al que
+                            llegarán los mensajes de confirmación de turnos.</p>
+                    </div>
+
+                    <div class="section-header">
+                        <h3>Próximos Turnos (Global)</h3>
+                        <span id="admin-total-turnos"
+                            style="background: var(--pale-pink); color: var(--primary-pink); padding: 2px 8px; border-radius: 10px; font-size: 12px; font-weight: 700;">0</span>
+                    </div>
+                    <div id="admin-appointments-container">
+                        <!-- Llenado por JS -->
+                    </div>
+                </div>
+
+                <div id="admin-content-clientes" style="display: none;">
+                    <div class="section-header">
+                        <h3>Clientas Registradas</h3>
+                        <span id="admin-total-clientes"
+                            style="background: var(--pale-pink); color: var(--primary-pink); padding: 2px 8px; border-radius: 10px; font-size: 12px; font-weight: 700;">0</span>
+                    </div>
+                    <div id="admin-users-container">
+                        <!-- Llenado por JS -->
+                    </div>
+                </div>
+
+                <!-- Admin Content Services -->
+                <div id="admin-content-servicios" style="display: none;">
+                    <div class="section-header">
+                        <h3>Gestión de Precios</h3>
+                    </div>
+                    <p style="font-size: 13px; color: var(--text-light); margin-bottom: 15px;">Añade nuevos servicios o
+                        edita tus precios. Todo se actualizará al instante.</p>
+
+                    <!-- Formulario de Nuevo Servicio -->
+                    <div
+                        style="background: white; border-radius: 12px; padding: 15px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); border-left: 4px solid var(--primary-pink);">
+                        <h4 style="font-size: 14px; margin: 0 0 10px 0; color: var(--text-dark);">+ Añadir Nuevo
+                            Servicio</h4>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <input type="text" id="admin-new-name" placeholder="Nombre completo (ej. Limpieza Facial)"
+                                style="padding: 10px; border: 1px solid #e0e0e0; border-radius: 8px; width: 100%; box-sizing: border-box; font-size: 12px; outline: none;">
+                            <div style="display: flex; gap: 10px;">
+                                <input type="text" id="admin-new-price" placeholder="Precio (ej. $12.000 ARS)"
+                                    style="padding: 10px; border: 1px solid #e0e0e0; border-radius: 8px; flex: 1; font-size: 12px; outline: none;">
+                                <input type="text" id="admin-new-duration" placeholder="Tiempo (ej. 40 min)"
+                                    style="padding: 10px; border: 1px solid #e0e0e0; border-radius: 8px; width: 100px; font-size: 12px; outline: none;">
+                            </div>
+                            <button onclick="app.adminAddService()"
+                                style="background: var(--primary-pink); color: white; border: none; padding: 10px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 5px;">Añadir
+                                Servicio</button>
+                        </div>
+                    </div>
+
+                    <div id="admin-services-container">
+                        <!-- Llenado por JS -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 
     <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    }, err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
 </body>
 
 </html>
